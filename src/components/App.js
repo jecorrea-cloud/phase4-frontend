@@ -9,20 +9,18 @@ import React, { Component } from 'react'
 class App extends Component {
 
   state = {
-    id: 0,
     username: "",
     password: "",
     // entries: []
   }
 
   setUser = (user) => {
+    console.log(user)
     this.setState({
-      id: user.id,
       username: user.username,
       // entries: user.entries,
     } );
     this.props.history.push("/home");
-
   };
 
   render() {

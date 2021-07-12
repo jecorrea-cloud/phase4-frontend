@@ -34,6 +34,7 @@ export default class Login extends Component {
         } else {
           alert(potentialUser.error);
         }
+        console.log(potentialUser)
       });
   };
 
