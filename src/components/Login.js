@@ -5,6 +5,7 @@ export default class Login extends Component {
   state = {
     username: "",
     password: "",
+    token: ""
   };
 
   handleChange = (e) => {
@@ -25,6 +26,7 @@ export default class Login extends Component {
       body: JSON.stringify({
         username: this.state.username,
         password: this.state.password,
+        token: this.state.token
       }),
     })
       .then((r) => r.json())

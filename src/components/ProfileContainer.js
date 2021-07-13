@@ -1,15 +1,18 @@
 import React, { Component } from "react";
-import EntryContainer from "./EntryContainer"
+import  Entry from "./Entry";
+import NewEntryForm from "./NewEntryForm"
 
 export default class ProfileContainer extends Component {
 
 render() {
     return (
         <div>
-            <h2>{this.props.username}&apos;s Profile</h2>
-            <ol>
-            {this.props.entries.map(entry => <EntryContainer key={entry.id} entry={entry} token={this.props.token}/>)}
-            </ol> 
+            <h2>Hi {this.props.username}!</h2>
+
+            {this.props.entries.map(entry => <Entry key={entry.id} entry={entry} />)}
+
+            <NewEntryForm addEntry={this.props.addEntry} token={this.props.token} />
+ 
         </div>
     )
 }

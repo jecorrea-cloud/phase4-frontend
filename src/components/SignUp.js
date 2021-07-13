@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 export default class SignUp extends Component {
   state = {
+    id: 0,
     username: "",
     password: "",
   };
@@ -15,7 +16,7 @@ export default class SignUp extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch("http://localhost:3000/signup", {
+    fetch("http://localhost:3000/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -27,10 +28,10 @@ export default class SignUp extends Component {
     })
       .then((res) => res.json())
       .then((potentialUser) => {
-        if (!potentialUser.error) {
+        if (potentialUser.id) {
           this.props.setUser(potentialUser);
         } else {
-          alert(potentialUser.error);
+          alert("Messed up");
         }
       });
   };
