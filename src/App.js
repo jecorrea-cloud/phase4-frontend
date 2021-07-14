@@ -17,9 +17,9 @@ class App extends Component {
   }
 
   componentDidMount = () =>{
-
+    (console.log("Hello!"))
     if(localStorage.token){
-
+      (console.log("Hello again!"))
       fetch("http://localhost:3000/me", {
         headers: {
           "authorization": localStorage.token
@@ -73,10 +73,10 @@ class App extends Component {
     console.log(res)
     if(res.token){
       this.setState({
-        id: res.id,
-        username: res.username,
-        entries: res.entries,
-        token: res.token,
+        id: res.user.id,
+        username: res.user.username,
+        entries: res.user.entries,
+        token: res.token
       })
       this.props.history.push("/profile")
     } else {
@@ -98,14 +98,13 @@ class App extends Component {
     }
   }
 
-  renderProfile = () => {
-    return <ProfileContainer username={this.state.username} entries={this.state.entries}/>
-  }
-
   addEntry = (entry) =>{
-      this.setState({entries: [...this.state.entries, entry]})
+    this.setState({entries: [...this.state.entries, entry]})
   }
 
+  renderProfile = () => {
+    return <ProfileContainer username={this.state.username} entries={this.state.entries} addEntry={this.addEntry} token={this.state.token}/>
+  }
 
   render (){
     console.log(this.state)
@@ -118,7 +117,7 @@ class App extends Component {
         </Route>
         <Route path="/register" render={this.renderForm}>
           </Route>
-          <Route path="/profile" render={this.renderProfile} addEntry={this.addEntry} token={this.state.token}>
+          <Route path="/profile" render={this.renderProfile}>
           </Route>
         </Switch>
 

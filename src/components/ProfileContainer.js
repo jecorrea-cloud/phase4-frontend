@@ -9,10 +9,10 @@ render() {
         <div>
             <h2>Hi {this.props.username}!</h2>
 
+            <NewEntryForm addEntry={this.props.addEntry} token={this.props.token} />
+
             {this.props.entries.map(entry => <Entry key={entry.id} entry={entry} />)}
 
-            <NewEntryForm addEntry={this.props.addEntry} token={this.props.token} />
- 
         </div>
     )
 }
